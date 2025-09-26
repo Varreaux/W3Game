@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://wwbqbws515pt"]
+
+[ext_resource type="PackedScene" uid="uid://cq2cov84cq0s1" path="res://player.tscn" id="1_3pe8w"]
+[ext_resource type="PackedScene" uid="uid://dcst2x8q5jyg2" path="res://breakable_door.tscn" id="2_12cy2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3gum"]
+size = Vector2(1209, 111.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egj7i"]
+size = Vector2(1216, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qpgp"]
+size = Vector2(20, 392)
+
+[node name="main" type="Node2D"]
+
+[node name="floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+position = Vector2(611.5, 175.75)
+shape = SubResource("RectangleShape2D_j3gum")
+
+[node name="Control" type="Control" parent="floor"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="floor/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.8
+anchor_right = 17.9
+anchor_bottom = 10.15
+offset_top = 48.0
+offset_right = 500.0
+offset_bottom = 98.0
+color = Color(0.113725, 0.113725, 0.203922, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ceiling" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ceiling"]
+position = Vector2(608, -176.5)
+shape = SubResource("RectangleShape2D_egj7i")
+
+[node name="Control" type="Control" parent="ceiling"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="ceiling/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -2.2
+anchor_right = 17.925
+offset_top = -192.0
+offset_right = 499.0
+offset_bottom = -160.0
+color = Color(0.113427, 0.112603, 0.202705, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="left_wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_wall"]
+position = Vector2(-11, -48)
+shape = SubResource("RectangleShape2D_4qpgp")
+
+[node name="Control" type="Control" parent="left_wall"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="left_wall/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -12.475
+anchor_top = -2.2
+anchor_right = -12.475
+anchor_bottom = 16.6
+offset_top = -192.0
+offset_right = 499.0
+offset_bottom = -160.0
+color = Color(0.113427, 0.112603, 0.202705, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" parent="." instance=ExtResource("1_3pe8w")]
+position = Vector2(15, -38)
+
+[node name="breakable_door" parent="." instance=ExtResource("2_12cy2")]
+position = Vector2(344, 56)
