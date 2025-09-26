@@ -25,7 +25,8 @@ func _process(delta: float) -> void:
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullets"):
+		area.queue_free()
 		speed *= 0.5
-		$Sprite2D.modulate = Color(1, 1.5, 0.5)  # Tint red
+		$Sprite2D.modulate = Color(1, 1.5, 0.5)  # Tint green
 		await get_tree().create_timer(0.2).timeout
 		$Sprite2D.modulate = Color(1, 1, 1)  # Back to normal

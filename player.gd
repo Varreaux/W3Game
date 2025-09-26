@@ -7,7 +7,7 @@ const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+var facing_dir := Vector2.RIGHT  # Default direction
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -28,8 +28,13 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
+	if Input.is_action_pressed("ui_right"):
+		facing_dir = Vector2.RIGHT
+	elif Input.is_action_pressed("ui_left"):
+		facing_dir = Vector2.LEFT
 	
 	if Input.is_action_just_pressed("ui_accept"):  # space key by default
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = global_position
+		bullet.direction = facing_dir.normalized()
 		get_tree().current_scene.add_child(bullet)
