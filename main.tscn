@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=9 format=3 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="PackedScene" uid="uid://cq2cov84cq0s1" path="res://player.tscn" id="1_3pe8w"]
 [ext_resource type="PackedScene" uid="uid://dcst2x8q5jyg2" path="res://breakable_door.tscn" id="2_12cy2"]
 [ext_resource type="PackedScene" uid="uid://cbnugvsnnvqrm" path="res://sliding_door.tscn" id="3_pqtyk"]
+[ext_resource type="PackedScene" uid="uid://c6lhuspcu3v85" path="res://gun.tscn" id="4_aheta"]
+[ext_resource type="PackedScene" uid="uid://dv1ikq1wucki2" path="res://ghost.tscn" id="5_wlapj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j3gum"]
 size = Vector2(1209, 111.5)
@@ -98,3 +100,9 @@ position = Vector2(344, 56)
 [node name="sliding_door" parent="." instance=ExtResource("3_pqtyk")]
 position = Vector2(256, 64)
 scale = Vector2(2.81103, 1.78734)
+
+[node name="gun" parent="." instance=ExtResource("4_aheta")]
+position = Vector2(304, 104)
+
+[node name="ghost" parent="." instance=ExtResource("5_wlapj")]
+position = Vector2(328, -88)

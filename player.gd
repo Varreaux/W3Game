@@ -4,6 +4,9 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 @export var bullet_scene: PackedScene
+@export var sword_scene: PackedScene
+
+var has_gun := false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -35,11 +38,24 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("ui_right"):
 		facing_dir = Vector2.RIGHT
+		get_node("AnimatedSprite2D").flip_h = false
 	elif Input.is_action_pressed("ui_left"):
 		facing_dir = Vector2.LEFT
+		get_node("AnimatedSprite2D").flip_h = true
 	
-	if Input.is_action_just_pressed("ui_accept"):  # space key by default
+	if has_gun and Input.is_action_just_pressed("ui_accept"):  # space key by default
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = global_position
 		bullet.direction = facing_dir.normalized()
 		get_tree().current_scene.add_child(bullet)
+
+	if Input.is_action_just_pressed("ui_select"):  # Example: Z key
+		if sword_scene:
+			var sword = sword_scene.instantiate()
+			if facing_dir.x < 0:
+				sword.get_node("Sprite2D").flip_h = true
+				sword.global_position = global_position + facing_dir * 45				
+			else:
+				sword.get_node("Sprite2D").flip_h = false
+				sword.global_position = global_position + facing_dir * 22
+			get_tree().current_scene.add_child(sword)
