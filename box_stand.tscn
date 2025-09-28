@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c78un30vcng8m"]
+
+[ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://industrial.v2.png" id="1_bjlu6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5e2x3"]
+size = Vector2(32, 48)
+
+[node name="box_stand" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 0)
+shape = SubResource("RectangleShape2D_5e2x3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 0)
+texture = ExtResource("1_bjlu6")
+region_enabled = true
+region_rect = Rect2(383.71, 31.6841, 32.7138, 48.6932)

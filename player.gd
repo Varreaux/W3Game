@@ -7,6 +7,7 @@ const JUMP_VELOCITY = -400.0
 @export var sword_scene: PackedScene
 
 var has_gun := false
+var has_sword := true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -49,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		bullet.direction = facing_dir.normalized()
 		get_tree().current_scene.add_child(bullet)
 
-	if Input.is_action_just_pressed("ui_select"):  # Example: Z key
+	if has_sword and Input.is_action_just_pressed("ui_select"):  # Example: Z key
 		if sword_scene:
 			var sword = sword_scene.instantiate()
 			if facing_dir.x < 0:
