@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=18 format=3 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="PackedScene" uid="uid://cq2cov84cq0s1" path="res://player.tscn" id="1_3pe8w"]
 [ext_resource type="Script" path="res://main.gd" id="1_46qwt"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c78un30vcng8m" path="res://box_stand.tscn" id="6_hitre"]
 [ext_resource type="PackedScene" uid="uid://33f50xmlqra6" path="res://turret.tscn" id="7_s40y1"]
 [ext_resource type="PackedScene" uid="uid://dh7ho0eyxjdna" path="res://enemy.tscn" id="8_leuy2"]
+[ext_resource type="PackedScene" uid="uid://br42jee0jyht4" path="res://exit.tscn" id="10_tpq4c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j3gum"]
 size = Vector2(1216, 96)
@@ -186,7 +187,7 @@ color = Color(0.113427, 0.112603, 0.202705, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_3pe8w")]
-position = Vector2(1032, 80)
+position = Vector2(32, -16)
 
 [node name="gun" parent="." instance=ExtResource("4_aheta")]
 position = Vector2(1848, 568)
@@ -258,6 +259,10 @@ rotation = 0.00156689
 position = Vector2(1552, 875)
 scale = Vector2(2.47663, 2.59741)
 
+[node name="enemy2" parent="." instance=ExtResource("8_leuy2")]
+position = Vector2(1568, -40)
+scale = Vector2(2.23998, 2.6153)
+
 [node name="checkpoint" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="checkpoint"]
@@ -271,5 +276,14 @@ offset_top = 72.0
 offset_right = 1394.0
 offset_bottom = 95.0
 text = "Checkpoint Reached!"
+
+[node name="exit" parent="." instance=ExtResource("10_tpq4c")]
+position = Vector2(2384, 880)
+scale = Vector2(1.44, 1.64001)
+
+[node name="TutorialLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Tutorial"
 
 [connection signal="body_entered" from="checkpoint" to="." method="_on_checkpoint_body_entered"]

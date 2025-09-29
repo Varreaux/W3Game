@@ -19,3 +19,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "turret":
 		body.slow_down()
 		queue_free()
+	if body.name == "Player":
+		body.die()  # Call the player's die function
+		queue_free()

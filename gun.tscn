@@ -17,4 +17,12 @@ position = Vector2(-4.76837e-07, -1.90735e-06)
 scale = Vector2(0.0234375, 0.0244141)
 texture = ExtResource("2_vkobn")
 
+[node name="ToggleLabel" type="Label" parent="."]
+visible = false
+offset_left = 8.0
+offset_top = -32.0
+offset_right = 97.0
+offset_bottom = -9.0
+text = "'T' to toggle"
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

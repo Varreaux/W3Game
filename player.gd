@@ -68,7 +68,10 @@ func _physics_process(delta: float) -> void:
 	
 	if current_weapon == Weapon.GUN and Input.is_action_just_pressed("ui_accept"):  # space key by default
 		var bullet = bullet_scene.instantiate()
-		bullet.global_position = global_position
+		if facing_dir.x < 0:		
+			bullet.global_position = global_position + facing_dir * 23		
+		else:
+			bullet.global_position = global_position + facing_dir * 13
 		bullet.direction = facing_dir.normalized()
 		get_tree().current_scene.add_child(bullet)
 
