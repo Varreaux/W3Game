@@ -1,9 +1,13 @@
 extends StaticBody2D
 
+
+const REGULAR_SPPED = 400
+const REDUCED_SPEED = 100
+
 var open_y
 var closed_y
 var is_open = true
-var speed = 500     # Pixels per second
+var speed = REGULAR_SPPED     # Pixels per second
 var going_up = true			# whether the door is currently opening
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +25,11 @@ func _process(delta: float) -> void:
 		position.y += speed * delta
 		if position.y >= closed_y:
 			going_up = true
+			
+	if Input.is_action_just_pressed("ui_accept"):
+		speed = REDUCED_SPEED
+		await get_tree().create_timer(1.0).timeout
+		speed = REGULAR_SPPED
 	
 
 func _on_hit_box_area_entered(area: Area2D) -> void:

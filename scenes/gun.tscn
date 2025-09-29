@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6lhuspcu3v85"]
 
-[ext_resource type="Script" path="res://gun.gd" id="1_cwpfw"]
-[ext_resource type="Texture2D" uid="uid://c3vk0itq77qg0" path="res://gun_texture.png" id="2_vkobn"]
+[ext_resource type="Script" uid="uid://d3gqc4hgdg6gg" path="res://scripts/gun.gd" id="1_cwpfw"]
+[ext_resource type="Texture2D" uid="uid://c3vk0itq77qg0" path="res://assets/gun_texture.png" id="2_vkobn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ko0j6"]
 size = Vector2(16, 16)

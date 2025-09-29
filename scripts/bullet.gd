@@ -13,9 +13,3 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position += direction * speed * delta
 	#pass
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body.name == "turret":
-		body.slow_down()
-		queue_free()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbnugvsnnvqrm"]
 
-[ext_resource type="Script" path="res://sliding_door.gd" id="1_ewgdl"]
-[ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://industrial.v2.png" id="2_6wduj"]
+[ext_resource type="Script" uid="uid://c1papg2xddax6" path="res://scripts/sliding_door.gd" id="1_ewgdl"]
+[ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://assets/industrial.v2.png" id="2_6wduj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4n0mk"]
 size = Vector2(16, 64)

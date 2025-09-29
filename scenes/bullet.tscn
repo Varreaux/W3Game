@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cuy0lgtl7esbu"]
 
-[ext_resource type="Script" path="res://bullet.gd" id="1_qrues"]
+[ext_resource type="Script" uid="uid://dnsxkh4yy5xc" path="res://scripts/bullet.gd" id="1_qrues"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7att"]
 size = Vector2(8, 8)
@@ -16,5 +16,3 @@ shape = SubResource("RectangleShape2D_f7att")
 offset_right = 8.0
 offset_bottom = 8.0
 color = Color(0.741462, 0.195056, 0.114459, 1)
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

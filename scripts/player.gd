@@ -1,13 +1,12 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 140.0
+const JUMP_VELOCITY = -300.0
 
 @export var bullet_scene: PackedScene
 @export var sword_scene: PackedScene
 
 var has_gun := false
-var has_sword := true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -31,9 +30,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 	if velocity.x != 0:
-		$AnimatedSprite2D.play("walk")
+		$AnimatedSprite2D.play("move")
 	else:
-		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.play("idle")
+		
 
 	move_and_slide()
 	
@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		bullet.direction = facing_dir.normalized()
 		get_tree().current_scene.add_child(bullet)
 
-	if has_sword and Input.is_action_just_pressed("ui_select"):  # Example: Z key
+	if Input.is_action_just_pressed("ui_select"):  # Example: Z key
 		if sword_scene:
 			var sword = sword_scene.instantiate()
 			if facing_dir.x < 0:
