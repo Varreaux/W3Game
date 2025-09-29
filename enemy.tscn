@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://dh7ho0eyxjdna"]
+
+[ext_resource type="Texture2D" uid="uid://cv6lnsf12w2gu" path="res://industrial.v2.png" id="1_bmamb"]
+[ext_resource type="Script" path="res://enemy.gd" id="1_itpqf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bsfr7"]
+size = Vector2(14, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsdaf"]
+atlas = ExtResource("1_bmamb")
+region = Rect2(0, 416, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi7gs"]
+atlas = ExtResource("1_bmamb")
+region = Rect2(16, 416, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khvsh"]
+atlas = ExtResource("1_bmamb")
+region = Rect2(32, 416, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1ybx"]
+atlas = ExtResource("1_bmamb")
+region = Rect2(48, 416, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vb8k"]
+atlas = ExtResource("1_bmamb")
+region = Rect2(64, 416, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76k4a"]
+atlas = ExtResource("1_bmamb")
+region = Rect2(80, 416, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvtjt"]
+atlas = ExtResource("1_bmamb")
+region = Rect2(96, 416, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ufj5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsdaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mi7gs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khvsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1ybx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vb8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76k4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvtjt")
+}],
+"loop": true,
+"name": &"slither",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ht4qc"]
+size = Vector2(16, 16)
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_itpqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_bsfr7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_3ufj5")
+animation = &"slither"
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("RectangleShape2D_ht4qc")
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

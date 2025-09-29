@@ -6,12 +6,15 @@ const JUMP_VELOCITY = -400.0
 @export var bullet_scene: PackedScene
 @export var sword_scene: PackedScene
 
-var has_gun := false
+var has_gun := true
 var has_sword := true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_dir := Vector2.RIGHT  # Default direction
+
+func die():
+	print("dead!")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

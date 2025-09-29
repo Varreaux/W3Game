@@ -17,11 +17,14 @@ func _ready():
 func shoot_bullet():
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = global_position + Vector2(0, -10)  # 10 pixels higher
-	#bullet.global_position = global_position
 	bullet.direction = Vector2.UP
 	bullet.speed = 800  # Only turret sets this
-	#bullet.velocity = Vector2.UP * 800  # really fast
 	get_tree().current_scene.add_child(bullet)
+	$AnimatedSprite2D.visible = true
+	await get_tree().create_timer(0.1).timeout
+	if $Timer.wait_time != bullet_interval:
+		$AnimatedSprite2D.visible = false
+	
 
 func slow_down():
 	if not turret_slowed:
@@ -32,5 +35,5 @@ func slow_down():
 
 
 func _on_timer_timeout() -> void:
-	print($Timer.wait_time)
+	#print($Timer.wait_time)
 	shoot_bullet()	

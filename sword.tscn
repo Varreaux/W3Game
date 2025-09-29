@@ -24,4 +24,5 @@ region_rect = Rect2(63.579, 289.15, 21.4198, 13.681)
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=15 format=3 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="PackedScene" uid="uid://cq2cov84cq0s1" path="res://player.tscn" id="1_3pe8w"]
 [ext_resource type="PackedScene" uid="uid://dcst2x8q5jyg2" path="res://breakable_door.tscn" id="2_12cy2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dongws64nfc2n" path="res://sword_icon.tscn" id="5_4cule"]
 [ext_resource type="PackedScene" uid="uid://c78un30vcng8m" path="res://box_stand.tscn" id="6_hitre"]
 [ext_resource type="PackedScene" uid="uid://33f50xmlqra6" path="res://turret.tscn" id="7_s40y1"]
+[ext_resource type="PackedScene" uid="uid://dh7ho0eyxjdna" path="res://enemy.tscn" id="8_leuy2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j3gum"]
 size = Vector2(1216, 96)
@@ -22,6 +23,9 @@ size = Vector2(20, 392)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qe6t8"]
 size = Vector2(16, 776)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t213a"]
+size = Vector2(27, 779)
 
 [node name="main" type="Node2D"]
 
@@ -150,14 +154,37 @@ offset_bottom = -160.0
 color = Color(0.113427, 0.112603, 0.202705, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Player" parent="." instance=ExtResource("1_3pe8w")]
-position = Vector2(15, -38)
+[node name="left_wall" type="StaticBody2D" parent="left_wall/left_wall"]
 
-[node name="breakable_door" parent="." instance=ExtResource("2_12cy2")]
-position = Vector2(1192, 56)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_wall/left_wall/left_wall"]
+position = Vector2(2002.5, -325.5)
+shape = SubResource("RectangleShape2D_t213a")
+
+[node name="Control" type="Control" parent="left_wall/left_wall/left_wall"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="left_wall/left_wall/left_wall/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 49.6
+anchor_top = -13.275
+anchor_right = 51.0
+anchor_bottom = 5.55
+offset_top = -192.0
+offset_right = -0.000152588
+offset_bottom = -161.0
+color = Color(0.113427, 0.112603, 0.202705, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" parent="." instance=ExtResource("1_3pe8w")]
+position = Vector2(1272, 816)
 
 [node name="gun" parent="." instance=ExtResource("4_aheta")]
-position = Vector2(48, 112)
+position = Vector2(1848, 568)
 
 [node name="all_reg_walls" type="Control" parent="."]
 layout_mode = 3
@@ -178,10 +205,47 @@ position = Vector2(1480, -40)
 scale = Vector2(2.67691, 2.52233)
 
 [node name="sword_icon" parent="." instance=ExtResource("5_4cule")]
-position = Vector2(1976, -40)
-
-[node name="box_stand" parent="." instance=ExtResource("6_hitre")]
-position = Vector2(336, 96)
+position = Vector2(1952, -48)
 
 [node name="turret" parent="." instance=ExtResource("7_s40y1")]
-position = Vector2(120, 80)
+position = Vector2(2064, 856)
+
+[node name="all boxes" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1192.0
+offset_top = 56.0
+offset_right = 1232.0
+offset_bottom = 96.0
+
+[node name="box_stand" parent="all boxes" instance=ExtResource("6_hitre")]
+position = Vector2(-856, 40)
+
+[node name="box_stand2" parent="all boxes" instance=ExtResource("6_hitre")]
+position = Vector2(424, 752)
+
+[node name="box_stand3" parent="all boxes" instance=ExtResource("6_hitre")]
+position = Vector2(552, 667)
+
+[node name="box_stand4" parent="all boxes" instance=ExtResource("6_hitre")]
+position = Vector2(280, 816)
+
+[node name="box_stand5" parent="all boxes" instance=ExtResource("6_hitre")]
+position = Vector2(440, 592)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="breakable_door" parent="Control" instance=ExtResource("2_12cy2")]
+position = Vector2(1192, 56)
+
+[node name="breakable_door2" parent="Control" instance=ExtResource("2_12cy2")]
+position = Vector2(1880, 599)
+rotation = 1.5682
+
+[node name="enemy" parent="." instance=ExtResource("8_leuy2")]
+position = Vector2(1552, 875)
+scale = Vector2(2.47663, 2.59741)

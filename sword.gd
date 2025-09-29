@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 	#queue_free()  # Remove the sword swing
 
 func _on_area_entered(area):
-	if area.name == "Enemy":
+	if area.name == "enemy":
 		area.queue_free()  # Destroy the enemy
 
 
