@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://wwbqbws515pt"]
+[gd_scene load_steps=17 format=3 uid="uid://wwbqbws515pt"]
 
 [ext_resource type="PackedScene" uid="uid://cq2cov84cq0s1" path="res://player.tscn" id="1_3pe8w"]
+[ext_resource type="Script" path="res://main.gd" id="1_46qwt"]
 [ext_resource type="PackedScene" uid="uid://dcst2x8q5jyg2" path="res://breakable_door.tscn" id="2_12cy2"]
 [ext_resource type="PackedScene" uid="uid://b788vxeh7ug22" path="res://regular_wall.tscn" id="4_3ijgk"]
 [ext_resource type="PackedScene" uid="uid://c6lhuspcu3v85" path="res://gun.tscn" id="4_aheta"]
@@ -27,7 +28,11 @@ size = Vector2(16, 776)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t213a"]
 size = Vector2(27, 779)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8hara"]
+radius = 17.8885
+
 [node name="main" type="Node2D"]
+script = ExtResource("1_46qwt")
 
 [node name="floor" type="StaticBody2D" parent="."]
 
@@ -181,7 +186,7 @@ color = Color(0.113427, 0.112603, 0.202705, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_3pe8w")]
-position = Vector2(1272, 816)
+position = Vector2(1032, 80)
 
 [node name="gun" parent="." instance=ExtResource("4_aheta")]
 position = Vector2(1848, 568)
@@ -233,6 +238,9 @@ position = Vector2(280, 816)
 [node name="box_stand5" parent="all boxes" instance=ExtResource("6_hitre")]
 position = Vector2(440, 592)
 
+[node name="box_stand6" parent="all boxes" instance=ExtResource("6_hitre")]
+position = Vector2(624, 552)
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -240,12 +248,28 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="breakable_door" parent="Control" instance=ExtResource("2_12cy2")]
-position = Vector2(1192, 56)
+position = Vector2(1128, 56)
 
 [node name="breakable_door2" parent="Control" instance=ExtResource("2_12cy2")]
-position = Vector2(1880, 599)
-rotation = 1.5682
+position = Vector2(1808, 528)
+rotation = 0.00156689
 
 [node name="enemy" parent="." instance=ExtResource("8_leuy2")]
 position = Vector2(1552, 875)
 scale = Vector2(2.47663, 2.59741)
+
+[node name="checkpoint" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="checkpoint"]
+position = Vector2(1192, 96)
+shape = SubResource("CircleShape2D_8hara")
+
+[node name="CheckpointLabel" type="Label" parent="."]
+visible = false
+offset_left = 1232.0
+offset_top = 72.0
+offset_right = 1394.0
+offset_bottom = 95.0
+text = "Checkpoint Reached!"
+
+[connection signal="body_entered" from="checkpoint" to="." method="_on_checkpoint_body_entered"]

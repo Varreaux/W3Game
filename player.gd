@@ -9,12 +9,21 @@ const JUMP_VELOCITY = -400.0
 var has_gun := true
 var has_sword := true
 
+enum Weapon { NONE, GUN, SWORD }
+var current_weapon = Weapon.NONE
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_dir := Vector2.RIGHT  # Default direction
+var spawn_position := Vector2.ZERO
+
+func _ready():
+	spawn_position = global_position
 
 func die():
 	print("dead!")
+	global_position = spawn_position
+	velocity = Vector2.ZERO  # Stop movement
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -46,14 +55,24 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_pressed("ui_left"):
 		facing_dir = Vector2.LEFT
 		get_node("AnimatedSprite2D").flip_h = true
+		
+		
+	if Input.is_action_just_pressed("toggle_weapon"):
+		if has_gun and has_sword:
+			current_weapon = Weapon.GUN if current_weapon == Weapon.SWORD else Weapon.SWORD
+			#print("Switched to:", current_weapon == Weapon.GUN ? "Gun" : "Sword")
+		elif has_gun:
+			current_weapon = Weapon.GUN
+		elif has_sword:
+			current_weapon = Weapon.SWORD
 	
-	if has_gun and Input.is_action_just_pressed("ui_accept"):  # space key by default
+	if current_weapon == Weapon.GUN and Input.is_action_just_pressed("ui_accept"):  # space key by default
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = global_position
 		bullet.direction = facing_dir.normalized()
 		get_tree().current_scene.add_child(bullet)
 
-	if has_sword and Input.is_action_just_pressed("ui_select"):  # Example: Z key
+	if current_weapon == Weapon.SWORD and Input.is_action_just_pressed("ui_select"):  # Example: Z key
 		if sword_scene:
 			var sword = sword_scene.instantiate()
 			if facing_dir.x < 0:
